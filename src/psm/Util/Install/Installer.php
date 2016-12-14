@@ -153,6 +153,7 @@ class Installer {
 					('log_sms', '1'),
 					('log_pushover', '1'),
 					('log_retention_period', '365'),
+					('api_key', '" . sha1(microtime() + rand(0, 1024)) . "'),
 					('version', '" . PSM_VERSION . "'),
 					('version_update_check', '" . PSM_VERSION . "'),
 					('auto_refresh_servers', '0'),

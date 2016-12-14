@@ -28,8 +28,8 @@
 // include main configuration and functionality
 require_once __DIR__ . '/../src/bootstrap.php';
 
-if(!psm_is_cli()) {
-	die('This script can only be run from the command line.');
+if(!(psm_is_cli() || strcmp(psm_get_conf('api_key'), $_GET['key']) == 0)) {
+	die('This script can only be run from the command line or is you own the keys to the castle ;).');
 }
 
 $cron_timeout = PSM_CRON_TIMEOUT;
@@ -68,6 +68,7 @@ if(!defined('PSM_DEBUG') || !PSM_DEBUG) {
 }
 psm_update_conf('cron_running_time', $time);
 
+echo "Starting cron";
 $autorun = $router->getService('util.server.updatemanager');
 $autorun->run(true);
 
